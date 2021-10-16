@@ -23,7 +23,7 @@ module SolidusJwt
         #   otherwise, returns nil
         #
         def for_jwt(sub)
-          find_by(id: sub)
+          find_by(authentication_token: sub)
         end
       end
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "json_web_token"
 
 module SolidusJwt
   module Spree
@@ -23,7 +24,7 @@ module SolidusJwt
         end
 
         def json_web_token
-          @json_web_token ||= SolidusJwt.decode(api_key).first
+          @json_web_token ||= JsonWebToken.verify(api_key).first
         rescue JWT::DecodeError
           # Allow spree to try and authenticate if we still allow it. Otherwise
           # raise an error
